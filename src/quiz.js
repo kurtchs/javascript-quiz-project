@@ -1,6 +1,6 @@
 class Quiz {
   constructor(questions, timeLimit, timeRemaining) {
-    this.questions = questions;
+    this.questions = questions; // esto es un array de objetos ( objeto basados en la clase question)
     this.timeLimit = timeLimit;
     this.timeRemaining = timeRemaining;
     this.correctAnswers = 0;
@@ -49,6 +49,26 @@ if (answer === this.questions[this.currentQuestionIndex].answer ){
         return true
 
   }
+}
+filterQuestionsByDifficulty(difficulty){
+    if(difficulty < 1 || difficulty > 3 || typeof difficulty !== "number") {
+        return this.questions
+    }
+    this.questions = this.questions.filter((eachQuestion)=>{
+        if(eachQuestion.difficulty === difficulty){
+            return true
+        }
+
+    })
+
+    
+}
+averageDifficulty(){
+    let sumaDeDificultades = this.questions.reduce((acc, eachQuestion)=>{
+return acc + eachQuestion.difficulty
+
+},0)
+return sumaDeDificultades / this.questions.length
 }
 
 }
